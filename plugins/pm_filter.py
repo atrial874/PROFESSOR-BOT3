@@ -911,7 +911,7 @@ async def auto_filter(client, msg, spoll=False):
         btn = [
             [
                 InlineKeyboardButton(
-                    text=f"[✪{get_size(file.file_size)}] ✤ {file.file_name}", callback_data=f'{pre}#{req}#{file.file_id}'
+                    text=f"✪{get_size(file.file_size)} ✤ {file.file_name}", callback_data=f'{pre}#{req}#{file.file_id}'
                 ),
             ]
             for file in files
@@ -952,17 +952,11 @@ async def auto_filter(client, msg, spoll=False):
             [InlineKeyboardButton(text=f"📄 PAGES 1/{math.ceil(int(total_results) / 6)}", callback_data="pages"),
              InlineKeyboardButton(text="NEXT ➡️", callback_data=f"next_{req}_{key}_{offset}")]
         )
-        btn.insert(1,
-            [InlineKeyboardButton(text="💢 ᴊᴏɪɴ ᴏᴜʀ ɢʀᴏᴜᴘ 💢",url="https://t.me/+UJUWoqMGIgNmNjc1")]
-        )
-    else:
+        else:
         btn.append(
             [InlineKeyboardButton(text="📄 Page 1/1", callback_data="pages")]
         )
-        btn.insert(1,
-            [InlineKeyboardButton(text="💢 ᴊᴏɪɴ ᴏᴜʀ ɢʀᴏᴜᴘ 💢",url="https://t.me/+UJUWoqMGIgNmNjc1")]
-        )
-    imdb = await get_poster(search, file=(files[0]).file_name) if settings["imdb"] else None
+        imdb = await get_poster(search, file=(files[0]).file_name) if settings["imdb"] else None
     TEMPLATE = settings['template']
     if imdb:
         cap = TEMPLATE.format(
